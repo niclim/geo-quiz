@@ -1,12 +1,13 @@
 import React from 'react'
 import { Drawer as MuiDrawer, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { Done, Close } from '@material-ui/icons'
 import { withStyles } from '@material-ui/core/styles'
 import gMaps from '../assets/googlemaps.png'
 
 const styles = theme => ({
   drawer: {
     position: 'relative',
-    width: 180
+    width: 240
   },
   drawerHeader: {
     height: '64px',
@@ -40,10 +41,18 @@ const Drawer = props => {
         props.questions && (
           <List>
             {
-              props.questions.map(q => (
-                <ListItem key={q.number}>
+              props.questions.map((q, i) => (
+                <ListItem key={q.number} button>
                   <ListItemText>Question {q.number}</ListItemText>
-                  <ListItemIcon primary='Inbox' />
+                  {
+                    q.answered && (
+                      <ListItemIcon>
+                        {
+                          q.correct ? <Done /> : <Close />
+                        }
+                      </ListItemIcon>
+                    )
+                  }
                 </ListItem>
               ))
             }
