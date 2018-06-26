@@ -1,5 +1,3 @@
 # geo-quiz
 
-Routes to define:
-- questions route
-- user to log in
+A simple web application to test geography knowledge
