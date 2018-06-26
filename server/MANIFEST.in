@@ -1,0 +1,4 @@
+include geoquiz_server/schema.sql
+graft geoquiz_server/static
+graft geoquiz_server/templates
+global-exclude *.pyc
