@@ -1,8 +1,8 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
+import { Typography, Theme, createStyles } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 
-const style = theme => ({
+const style = (theme: Theme) => createStyles({
   root: {
     display: 'flex',
     margin: 'auto',
@@ -11,7 +11,16 @@ const style = theme => ({
   }
 })
 
-const TotalScore = (props) => {
+interface ITotalScoreClasses {
+  root: string
+}
+
+interface ITotalScoreProps {
+  classes: ITotalScoreClasses
+  score: number
+}
+
+const TotalScore = (props: ITotalScoreProps) => {
   const { classes, score } = props
   return (
     <div className={classes.root}>

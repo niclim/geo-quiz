@@ -1,10 +1,11 @@
 import React from 'react'
-import { Drawer as MuiDrawer, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { Drawer as MuiDrawer, Divider, List, ListItem, ListItemIcon, ListItemText, Theme, createStyles } from '@material-ui/core'
 import { Done, Close } from '@material-ui/icons'
 import { withStyles } from '@material-ui/core/styles'
 import gMaps from '../assets/googlemaps.png'
+import { IQuestion } from '../types'
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
   drawer: {
     position: 'relative',
     width: 240
@@ -20,7 +21,18 @@ const styles = theme => ({
   }
 })
 
-const Drawer = props => {
+interface IDrawerClasses {
+  drawer: string
+  drawerHeader: string
+  gmaps: string
+}
+
+interface IDrawerProps {
+  classes: IDrawerClasses
+  questions: IQuestion[]
+}
+
+const Drawer = (props: IDrawerProps) => {
   const { classes } = props
   return (
     <MuiDrawer variant='permanent' anchor='left' classes={{

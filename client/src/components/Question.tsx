@@ -1,9 +1,10 @@
 import React from 'react'
-import { Typography, Button } from '@material-ui/core'
+import { Typography, Button, Theme, createStyles } from '@material-ui/core'
 import { Send } from '@material-ui/icons'
 import { withStyles } from '@material-ui/core/styles'
+import { IQuestion } from '../types'
 
-const style = theme => ({
+const style = (theme: Theme) => createStyles({
   root: {
     display: 'flex',
     margin: 'auto',
@@ -34,7 +35,25 @@ const style = theme => ({
   }
 })
 
-const Question = props => {
+interface IQuestionClasses {
+  root: string
+  imageContainer: string
+  image: string
+  questions: string
+  button: string
+  nextButton: string
+  rightIcon: string
+}
+
+interface IQuestionProps {
+  question: IQuestion
+  current: number
+  answerQuestion: (answer: number, current: number) => void
+  next: (current: number) => void
+  classes: IQuestionClasses
+}
+
+const Question = (props: IQuestionProps) => {
   const { question, current, answerQuestion, next, classes } = props
   return (
     <div className={classes.root}>
@@ -52,7 +71,9 @@ const Question = props => {
               className={classes.button}
               key={d}
               onClick={() => {
+                /* tslint:disable */
                 !question.answered && answerQuestion(i, current)
+                /* tslint:enable */
               }}
             >{d}</Button>
           ))

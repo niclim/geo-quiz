@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Theme, createStyles } from '@material-ui/core'
 import Drawer from '../components/Drawer'
 import Question from '../components/Question'
 import TotalScore from '../components/TotalScore'
 import { withStyles } from '@material-ui/core/styles'
 import questions from '../questions'
+import { IQuestion } from '../types'
 
-const style = theme => ({
+const style = (theme: Theme) => createStyles({
   root: {
     flexGrow: 1,
     display: 'flex'
@@ -25,8 +26,26 @@ const style = theme => ({
   }
 })
 
-class App extends Component {
-  constructor (props) {
+interface IAppClasses {
+  root: string
+  appBar: string
+  toolbar: string
+  content: string
+  questions: string
+}
+
+interface IAppProps {
+  classes: IAppClasses
+}
+
+interface IAppState {
+  questions: IQuestion[]
+  current: number
+  done: boolean
+}
+
+class App extends Component<IAppProps, IAppState> {
+  constructor(props: IAppProps) {
     super(props)
     this.state = {
       questions: questions.map((q, i) => ({
@@ -38,11 +57,9 @@ class App extends Component {
       current: 0,
       done: false
     }
-    this.answerQuestion = this.answerQuestion.bind(this)
-    this.next = this.next.bind(this)
   }
 
-  next (current) {
+  private next = (current: number) => {
     if (current === questions.length - 1) {
       this.setState({
         done: true
@@ -54,7 +71,7 @@ class App extends Component {
     }
   }
 
-  answerQuestion (answer, current) {
+  private answerQuestion = (answer: number, current: number) => {
     this.setState((prevState) => ({
       questions: prevState.questions.map((q, i) => i !== current
         ? { ...q }
@@ -67,7 +84,7 @@ class App extends Component {
     }))
   }
 
-  render () {
+  public render() {
     const { classes } = this.props
     return (
       <div className={classes.root}>
