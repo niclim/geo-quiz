@@ -86,10 +86,12 @@ class App extends Component<IAppProps, IAppState> {
 
   public render() {
     const { classes } = this.props
+    const totalScore = this.state.questions.reduce((acc, q) => acc + (q.correct ? 1 : 0), 0)
     return (
       <div className={classes.root}>
         <Drawer
           questions={this.state.questions}
+          score={totalScore}
         />
         <AppBar className={classes.appBar}>
           <Toolbar>
@@ -103,7 +105,7 @@ class App extends Component<IAppProps, IAppState> {
               this.state.done
                 ? (
                   <TotalScore
-                    score={this.state.questions.reduce((acc, q) => acc + (q.correct ? 1 : 0), 0)}
+                    score={totalScore}
                   />
                 ) : (
                   <Question

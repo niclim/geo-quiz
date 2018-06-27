@@ -1,5 +1,5 @@
 import React from 'react'
-import { Drawer as MuiDrawer, Divider, List, ListItem, ListItemIcon, ListItemText, Theme, createStyles } from '@material-ui/core'
+import { Drawer as MuiDrawer, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Theme, createStyles } from '@material-ui/core'
 import { Done, Close } from '@material-ui/icons'
 import { withStyles } from '@material-ui/core/styles'
 import gMaps from '../assets/googlemaps.png'
@@ -11,8 +11,10 @@ const styles = (theme: Theme) => createStyles({
     width: 240
   },
   drawerHeader: {
-    height: '64px',
-    display: 'flex'
+    paddingTop: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column'
   },
   gmaps: {
     width: '50px',
@@ -30,28 +32,36 @@ interface IDrawerClasses {
 interface IDrawerProps {
   classes: IDrawerClasses
   questions: IQuestion[]
+  score: number
 }
 
 const Drawer = (props: IDrawerProps) => {
-  const { classes } = props
+  const { classes, score } = props
   return (
     <MuiDrawer variant='permanent' anchor='left' classes={{
       paper: classes.drawer
     }}>
       <div className={classes.drawerHeader}>
-        <img
-          src={gMaps}
-          alt='google maps'
-          className={classes.gmaps}
-        />
+        <div>
+          <img
+            src={gMaps}
+            alt='google maps'
+            className={classes.gmaps}
+          />
+        </div>
+        <div>
+          <h3>
+            Total Score: {score}/10
+          </h3>
+        </div>
       </div>
       <Divider />
-      <ListItem>
-        <ListItemText>Questions</ListItemText>
-      </ListItem>
       {
         props.questions && (
           <List>
+            <ListSubheader>
+              <h3>Questions</h3>
+            </ListSubheader>
             {
               props.questions.map((q, i) => (
                 <ListItem key={q.number} button>
