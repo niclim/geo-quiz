@@ -3,7 +3,7 @@ import { FluxStandardAction } from 'flux-standard-action'
 export const NEXT_QUESTION = 'NEXT_QUESTION'
 export const ANSWER_QUESTION = 'ANSWER_QUESTION'
 
-interface IAnswerQuestion {
+export interface IAnswerQuestion {
   answer: number
   current: number
 }

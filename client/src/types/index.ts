@@ -1,3 +1,5 @@
+import { IQuizState } from '../redux/currentQuiz/reducer'
+
 export interface IQuestion {
   image: string
   question: string
@@ -6,4 +8,8 @@ export interface IQuestion {
   number: number
   correct: null | boolean
   answered: boolean
+}
+
+export interface IReduxState {
+  currentQuiz: IQuizState
 }
