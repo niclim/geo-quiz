@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
+import currentQuizReducer from './currentQuiz/reducer'
 
 const rootReducer = combineReducers({
-  store: () => ({})
+  currentQuiz: currentQuizReducer
 })
 
 export default rootReducer
