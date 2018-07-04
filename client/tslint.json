@@ -17,6 +17,7 @@
     "member-ordering": false,
     "jsx-no-lambda": false,
     "interface-name": false,
-    "ban-types": false
+    "ban-types": false,
+    "no-console": false
   }
 }

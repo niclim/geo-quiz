@@ -42,12 +42,12 @@ interface IQuizProps {
   done: boolean
   answerQuestion: (answer: number, current: number) => FluxStandardAction<IAnswerQuestion>
   nextQuestion: (current: number) => FluxStandardAction<number>
+  totalScore: number
 }
 
 class Quiz extends Component<IQuizProps> {
   public render() {
-    const { classes, questions, current, done, answerQuestion, nextQuestion } = this.props
-    const totalScore = questions.reduce((acc, q) => acc + (q.correct ? 1 : 0), 0)
+    const { classes, questions, current, done, answerQuestion, nextQuestion, totalScore } = this.props
     return (
       <div className={classes.root}>
         <Drawer
