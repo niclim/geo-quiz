@@ -28,7 +28,7 @@ const currentQuizReducer = (state: IQuizState = defaultState, action: FluxStanda
         done: true
       } : {
           ...state,
-          current: action.payload.current + 1
+          current: action.payload + 1
         }
     case ANSWER_QUESTION:
       return {
