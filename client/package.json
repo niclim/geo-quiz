@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "postbuild": "rm -r ../server/geoquiz_server/static; mv build ../server/geoquiz_server/static;",
+    "postbuild": "rm -r ../server/geoquiz_server/static; mv build ../server/geoquiz_server/static; mv ../server/geoquiz_server/static/static/js ../server/geoquiz_server/static; mv ../server/geoquiz_server/static/static/css ../server/geoquiz_server/static",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },
